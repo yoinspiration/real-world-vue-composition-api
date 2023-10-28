@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router'
+
 defineProps({
   event: {
     type: Object,
@@ -8,10 +10,12 @@ defineProps({
 </script>
 
 <template>
-  <div class="event-card">
-    <h2>{{ event.title }}</h2>
-    <span>@{{ event.time }} on {{ event.date }}</span>
-  </div>
+  <RouterLink class="event-link" :to="{ name: 'event-details', params: { id: event.id } }">
+    <div class="event-card">
+      <h2>{{ event.title }}</h2>
+      <span>@{{ event.time }} on {{ event.date }}</span>
+    </div>
+  </RouterLink>
 </template>
 
 <style scoped>
@@ -29,5 +33,10 @@ defineProps({
 
 h2 {
   font-size: 20px;
+}
+
+.event-link {
+  color: #2c3e50;
+  text-decoration: none;
 }
 </style>
